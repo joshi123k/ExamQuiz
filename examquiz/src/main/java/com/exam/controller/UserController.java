@@ -20,11 +20,16 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private BCryptPasswordEncoder bcryptPasswordEncoder;
 
     @PostMapping("/")
     public ResponseEntity<?> createUser(@RequestBody User user) throws Exception {
 
         user.setProfile("default.png");
+        user.setPassword(this.bcryptPasswordEncoder.encode(user.getPassword()));
+
         Set<UserRole> roles=new HashSet<>();
 
         Role role=new Role();
