@@ -20,11 +20,13 @@ public class ExamQuizApplication implements CommandLineRunner {
 		SpringApplication.run(ExamQuizApplication.class, args);
 	}
 
-	@Autowired
-	private UserService userService;
+
 
 	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	private BCryptPasswordEncoder passwordEncoder;
+
+	@Autowired
+	private UserService userService;
 
 
 	@Override
@@ -34,7 +36,7 @@ public class ExamQuizApplication implements CommandLineRunner {
 		user.setFirstName("Kuldeep");
 		user.setLastName("joshi");
 		user.setProfile("default.png");
-		user.setPassword(this.bCryptPasswordEncoder.encode("kuldeep"));
+		user.setPassword(this.passwordEncoder.encode("kuldeep"));
 		user.setPhone("9079188341");
 		user.setEmail("kuldeep@gmail.com");
 		user.setUsername("kuldeep10");
